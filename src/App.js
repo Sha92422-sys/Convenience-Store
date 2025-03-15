@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./components/Navbar";
+import ProductList from "./components/ProductList";
+import ProductDetails from "./components/ProductDetails";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
 
 function App() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data.products))
+      .catch((error) => console.error("Error fetching products:", error));
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Router>
+      <Navbar/>
+      <div className="container mt-4">
+      
+        <img 
+          src="https://images.pexels.com/photos/19072522/pexels-photo-19072522.jpeg" 
+          alt="Store" 
+          className="img-fluid w-100 mb-4" 
+          style={{ maxHeight: "400px", objectFit: "cover" }}
+        />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<ProductList products={products} />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
+        </Routes>
+      </div>
+      <Footer />
+    </Router>
+    </>
   );
 }
 
