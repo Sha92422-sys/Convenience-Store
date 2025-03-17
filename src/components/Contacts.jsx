@@ -7,7 +7,7 @@ export default function Contacts() {
    <>
    <div className="container mt-4">
       <h2 className="text-center mb-4">Register and we will reach out to you</h2>
-      <div className="p-4 border rounded shadow-sm bg-dark" style={{ color: "white" }}>
+      <div className="p-4 border rounded shadow-sm bg-light" >
         <div className="mb-3">
           <label className="form-label">Name</label>
           <input type="text" className="form-control" placeholder="Enter your name" />
@@ -37,8 +37,8 @@ export default function Contacts() {
             <option>WhatsApp</option>
           </select>
         </div>
-
-        <button className="btn btn-primary w-100" disabled>Submit</button>
+        
+        <button className="btn btn-primary w-10" disabled>Submit</button>
       </div>
       <Link to="/" className="btn btn-primary my-2">Go back to Home</Link>
     </div>

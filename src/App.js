@@ -20,26 +20,28 @@ function App() {
   }, []);
   return (
     <>
-    <Router>
-      <Navbar/>
-      <div className="container mt-4">
-      
-        <img 
-          src="https://images.pexels.com/photos/19072522/pexels-photo-19072522.jpeg" 
-          alt="Store" 
-          className="img-fluid w-100 mb-4" 
-          style={{ maxHeight: "400px", objectFit: "cover" }}
-        />
+      <Router>
+        <Navbar />
+        <div className="container mt-4">
+          <img
+            src="https://images.pexels.com/photos/19072522/pexels-photo-19072522.jpeg"
+            alt="Store"
+            className="img-fluid w-100 mb-4"
+            style={{ maxHeight: "500px", objectFit: "cover" }}
+          />
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductList products={products} />} />
+          <Route
+            path="/products"
+            element={<ProductList products={products} />}
+          />
           <Route path="/products/:id" element={<ProductDetails />} />
-          <Route path="/contact" element={<Contacts/>}/>
-          <Route path="/about" element={<About/>}/>
+          <Route path="/contact" element={<Contacts />} />
+          <Route path="/about" element={<About />} />
         </Routes>
-      </div>
-      <Footer />
-    </Router>
+        <Footer />
+      </Router>
     </>
   );
 }
