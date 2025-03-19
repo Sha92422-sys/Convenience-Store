@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ cart }) {
   return (
     <>
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -18,11 +18,21 @@ export default function Navbar() {
             <li className="nav-item">
               <Link className="nav-link" to="/products">Products</Link>
             </li>
-            <li className='nav-item'>
-              <Link className="nav-link" to="/contact"> Need help</Link>
+            <li className="nav-item">
+              <Link className="nav-link" to="/contact">Need help</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/about">About us</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link position-relative" to="/cart">
+                🛒 Cart 
+                {cart.length > 0 && (
+                  <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                    {cart.length}
+                  </span>
+                )}
+              </Link>
             </li>
           </ul>
         </div>

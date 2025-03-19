@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
@@ -8,9 +8,13 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Contacts from "./components/Contacts";
 import About from "./components/About";
+import AddCart from "./components/AddCart";
+import PaymentPage from "./components/PaymentPage";
+import Paymentsuccess from "./components/Paymentsuccess";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     fetch("https://dummyjson.com/products")
@@ -21,7 +25,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar cart={cart} />
         <div className="container mt-4">
           <img
             src="https://images.pexels.com/photos/19072522/pexels-photo-19072522.jpeg"
@@ -32,11 +36,12 @@ function App() {
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/products"
-            element={<ProductList products={products} />}
-          />
-          <Route path="/products/:id" element={<ProductDetails />} />
+          <Route path="/" element={<ProductList products={products} setCart={setCart} />} />
+          <Route path="/products" element={<ProductList products={products} setCart={setCart} />} />
+          <Route path="/products/:id" element={<ProductDetails setCart={setCart} />} />
+          <Route path="/cart" element={<AddCart cart={cart} setCart={setCart} />} />
+          <Route path="/payment" element={<PaymentPage setCart={setCart} />} />
+          <Route path="/success" element={<Paymentsuccess />} />
           <Route path="/contact" element={<Contacts />} />
           <Route path="/about" element={<About />} />
         </Routes>
